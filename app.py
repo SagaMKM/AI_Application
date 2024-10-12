@@ -1,8 +1,29 @@
 import gradio as gr
-from huggingface_hub import InferenceClient
+
+# Get HuggingFace Llama token from .env file and log in to HuggingFace.
+import os
+from dotenv import load_dotenv
+from huggingface_hub import login
+
+load_dotenv()
+token_llama = os.getenv("HUGGINGFACE_LLAMA_TOKEN")
+print(token_llama)
+login(token=token_llama)
+"""
+from huggingface_hub import InferenceClient 
+
+# Use a pipeline as a high-level helper
+from transformers import pipeline
+pipe = pipeline("text-generation", model="meta-llama/Llama-3.2-1B")
+# Load model directly
+from transformers import AutoTokenizer, AutoModelForCausalLM
+tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.2-1B")
+model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-1B")
+"""
 
 """
 For more information on `huggingface_hub` Inference API support, please check the docs: https://huggingface.co/docs/huggingface_hub/v0.22.2/en/guides/inference
+"""
 """
 client = InferenceClient("HuggingFaceH4/zephyr-7b-beta")
 
@@ -39,9 +60,9 @@ def respond(
         response += token
         yield response
 
-"""
-For information on how to customize the ChatInterface, peruse the gradio docs: https://www.gradio.app/docs/chatinterface
-"""
+
+#For information on how to customize the ChatInterface, peruse the gradio docs: https://www.gradio.app/docs/chatinterface
+
 demo = gr.ChatInterface(
     respond,
     additional_inputs=[
@@ -61,3 +82,4 @@ demo = gr.ChatInterface(
 
 if __name__ == "__main__":
     demo.launch()
+"""
