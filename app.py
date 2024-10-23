@@ -7,7 +7,7 @@ from transformers import AutoModelForTokenClassification, AutoModelForCausalLM, 
 
 # Load finetuned model from folder finetuned-financial-model.
 # https://stackoverflow.com/questions/78552651/how-to-fix-error-oserror-model-does-not-appear-to-have-a-file-named-config-j
-model_llm = "meta-llama/Llama-3.2-1B-Instruct"
+model_llm = "meta-llama/Llama-3.2-1B"
 model_fine_tuned = "./finetuned-financial-model"
 tokenizer_id = "./finetuned-financial-model" # Fix!
 model_id = AutoModelForCausalLM.from_pretrained(model_llm) 

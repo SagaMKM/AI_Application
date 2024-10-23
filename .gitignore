@@ -2,5 +2,8 @@
 results/
 logs/
 finetuned-financial-model/
-training.py
 newapp.py
+training2.py
+flagged/
+BudgetAdvisor/
+testi.py
