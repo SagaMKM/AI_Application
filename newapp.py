@@ -2,7 +2,8 @@ from transformers import pipeline
 import torch
 import gradio as gr
  
-model_id = "meta-llama/Llama-3.2-1B-Instruct"
+#model_id = "meta-llama/Llama-3.2-1B-Instruct"
+model_id = "finetuned-financial-model"
 pipe = pipeline(
     "text-generation",
     model=model_id,
@@ -50,5 +51,12 @@ iface = gr.Interface(
     description="Enter your financial details to receive personalized advice.",
 )
  
-# Launch the Gradio app
-iface.launch()
+def load_trained_model():
+    pass
+
+def main():
+    # Launch the Gradio app
+    iface.launch()
+
+if __name__ == "__main__":
+    main()

@@ -1,3 +1,6 @@
 .env
 results/
 logs/
+finetuned-financial-model/
+training.py
+newapp.py
