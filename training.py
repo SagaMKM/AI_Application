@@ -24,6 +24,7 @@ from transformers import Trainer, TrainingArguments, AutoModelForCausalLM
 tokenizer = AutoTokenizer.from_pretrained("meta-llama/Llama-3.2-1B", use_fast=True)
 model = AutoModelForCausalLM.from_pretrained("meta-llama/Llama-3.2-1B")
 
+# Make arrays of token the same size.
 if tokenizer.pad_token is None:
     tokenizer.add_special_tokens({'pad_token': tokenizer.eos_token})
     model.resize_token_embeddings(len(tokenizer))
@@ -31,6 +32,7 @@ if tokenizer.pad_token is None:
 # For memory efficiency.
 model.gradient_checkpointing_enable()
 
+# Parameter-Efficient Fine-Tuning
 from peft import LoraConfig, get_peft_model
 # Define a PEFT configuration for LoRA
 lora_config = LoraConfig(
@@ -111,7 +113,7 @@ trainer = Trainer(
 # Message for testing.
 print("Trainer is set up!")
 
-# 3. Trains the model and saves it.
+# Trains the model and saves it.
 trainer.train()
 print("Model trained!")
 trainer.save_model(model_output) # "./BudgetAdvisor"
